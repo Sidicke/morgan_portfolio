@@ -3,19 +3,73 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ivoire: #F6F4EF;
+  --blanc-chaud: #FFFEFB;
+  --encre: #19272A;
+  --encre-light: #4A585A;
+  --encre-muted: #788688;
+  --vert-profond: #173E3F;
+  --vert-subtle: #EBF1F1;
+  --cuivre: #A65C37;
+  --cuivre-hover: #8F4D2C;
+  --cuivre-light: #F7EFEA;
+  --sable: #EDEAE2;
+  --sable-border: #E2DDD2;
+  
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  background-color: var(--ivoire);
+  color: var(--encre);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--ivoire);
+  color: var(--encre);
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: var(--font-dmsans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Accessible focus ring strictly conforming to WCAG AA & ART_DIRECTION_V2.md */
+:focus-visible {
+  outline: 3px solid #173E3F !important;
+  outline-offset: 3px !important;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom editorial scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #F6F4EF;
+}
+::-webkit-scrollbar-thumb {
+  background: #D9D4C7;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A65C37;
+}
+
+/* Selection highlight */
+::selection {
+  background: #F7EFEA;
+  color: #A65C37;
 }
