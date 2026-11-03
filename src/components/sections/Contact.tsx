@@ -90,7 +90,7 @@ export const Contact: React.FC = () => {
   return (
     <section
       id="contact"
-      className="relative py-20 bg-vert-profond text-blanc-chaud overflow-hidden"
+      className="relative py-20 bg-vert-profond text-blanc-chaud overflow-hidden scroll-mt-20"
     >
       {/* Subtle organic light accent */}
       <div

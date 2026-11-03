@@ -25,7 +25,7 @@ export const CaseStudies: React.FC = () => {
   return (
     <section
       id="realisations"
-      className="py-18 sm:py-22 lg:py-28 bg-ivoire border-b border-sable-border overflow-hidden"
+      className="py-18 sm:py-22 lg:py-28 bg-ivoire border-b border-sable-border overflow-hidden scroll-mt-20"
     >
       <div className="mx-auto w-full max-w-container px-5 sm:px-8 lg:px-14">
         {/* Section Header */}

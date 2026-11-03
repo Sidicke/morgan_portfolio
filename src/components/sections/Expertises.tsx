@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import {
   ArrowUpRight,
   Search,
@@ -51,7 +52,7 @@ export const Expertises: React.FC = () => {
   return (
     <section
       id="expertises"
-      className="py-18 sm:py-22 lg:py-28 bg-[#FAF8F4] border-b border-sable-border overflow-hidden relative"
+      className="py-18 sm:py-22 lg:py-28 bg-[#FAF8F4] border-b border-sable-border overflow-hidden relative scroll-mt-20"
     >
       {/* Subtle warm ambient lights */}
       <div
@@ -64,8 +65,14 @@ export const Expertises: React.FC = () => {
       />
 
       <div className="mx-auto w-full max-w-container px-5 sm:px-8 lg:px-14 relative z-10">
-        {/* Section Header */}
-        <div className="max-w-[850px] mb-12 sm:mb-14">
+        {/* Section Header with smooth scroll reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-[850px] mb-12 sm:mb-14"
+        >
           <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cuivre/10 border border-cuivre/20 text-cuivre text-xs font-bold uppercase tracking-wider mb-3">
             <span>{portfolioContent.expertises.sectionBadge}</span>
           </span>
@@ -77,14 +84,14 @@ export const Expertises: React.FC = () => {
           <p className="text-[15px] sm:text-base lg:text-[17px] text-encre-light leading-relaxed font-sans max-w-2xl">
             {portfolioContent.expertises.intro}
           </p>
-        </div>
+        </motion.div>
 
         {/* Top Separator */}
         <div className="w-full h-[1px] bg-sable-border mb-2" />
 
-        {/* Services List - Clean, normal, with purposeful color accents */}
+        {/* Services List - Clean, normal, with purposeful color accents & staggered scroll reveal */}
         <div>
-          {portfolioContent.expertises.items.map((item) => {
+          {portfolioContent.expertises.items.map((item, index) => {
             const isCoaching = item.id === "coaching";
 
             const rowContent = (
@@ -175,7 +182,17 @@ export const Expertises: React.FC = () => {
             );
 
             return (
-              <div key={item.id}>
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{
+                  duration: 0.45,
+                  delay: index * 0.08,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+              >
                 {isCoaching ? (
                   <Link
                     href="/coaching"
@@ -197,7 +214,7 @@ export const Expertises: React.FC = () => {
 
                 {/* Divider between items */}
                 <div className="w-full h-[1px] bg-sable-border/80" />
-              </div>
+              </motion.div>
             );
           })}
         </div>

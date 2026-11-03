@@ -66,7 +66,7 @@ export const Timeline: React.FC = () => {
   return (
     <section
       id="parcours"
-      className="py-18 sm:py-22 lg:py-28 bg-[#F3EFE6] border-b border-sable-border overflow-hidden relative"
+      className="py-18 sm:py-22 lg:py-28 bg-[#F3EFE6] border-b border-sable-border overflow-hidden relative scroll-mt-20"
     >
       {/* Warm ambient tinted glows */}
       <div
@@ -79,8 +79,14 @@ export const Timeline: React.FC = () => {
       />
 
       <div className="mx-auto w-full max-w-container px-5 sm:px-8 lg:px-14 relative z-10">
-        {/* Section Header */}
-        <div className="max-w-[850px] mb-12 sm:mb-14">
+        {/* Section Header with smooth scroll reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-[850px] mb-12 sm:mb-14"
+        >
           <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cuivre/10 border border-cuivre/20 text-cuivre text-xs font-bold uppercase tracking-wider mb-3">
             <span>{portfolioContent.timeline.sectionBadge}</span>
           </span>
@@ -92,7 +98,7 @@ export const Timeline: React.FC = () => {
           <p className="text-[15px] sm:text-base lg:text-[17px] text-encre-light leading-relaxed font-sans max-w-2xl">
             {portfolioContent.timeline.intro}
           </p>
-        </div>
+        </motion.div>
 
         {/* Narrative Vertical Timeline Container */}
         <div ref={containerRef} className="relative max-w-5xl mx-auto pt-2">
@@ -122,8 +128,16 @@ export const Timeline: React.FC = () => {
               const isActive = activeIndex >= idx;
 
               return (
-                <div
+                <motion.div
                   key={idx}
+                  initial={{ opacity: 0, x: -16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{
+                    duration: 0.5,
+                    delay: idx * 0.07,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
                   className="relative flex flex-col md:flex-row items-start pl-9 md:pl-0 group"
                 >
                   {/* Left Column (Desktop >= 768px): Period */}
@@ -187,7 +201,7 @@ export const Timeline: React.FC = () => {
                       </p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>

@@ -190,12 +190,16 @@ export const Header: React.FC = () => {
                   }`}
                 >
                   <span>{item.label}</span>
-                  {/* Animated underline */}
-                  <span
-                    className={`absolute bottom-0 left-0 h-[1.5px] bg-cuivre transition-all duration-300 ease-out ${
-                      isActive ? "w-full" : "w-0 group-hover:w-full"
-                    }`}
-                  />
+                  {/* Fluid sliding active indicator */}
+                  {isActive ? (
+                    <motion.span
+                      layoutId="activeNavIndicator"
+                      className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-cuivre rounded-full"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  ) : (
+                    <span className="absolute -bottom-0.5 left-0 h-[1.5px] w-0 bg-cuivre/50 transition-all duration-300 ease-out group-hover:w-full" />
+                  )}
                 </a>
               );
             })}
