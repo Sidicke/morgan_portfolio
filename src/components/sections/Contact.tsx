@@ -123,17 +123,16 @@ export const Contact: React.FC = () => {
               {portfolioContent.contact.subtitle}
             </p>
 
-            {/* Location Badge factuelle */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-vert-profond-hover/80 border border-vert-profond-light text-xs text-ivoire/90 mb-5">
-              <MapPin className="w-3.5 h-3.5 text-cuivre" />
+            {/* Location */}
+            <div className="flex items-center gap-2 text-xs sm:text-sm text-ivoire/80 mb-6 font-medium">
+              <MapPin className="w-4 h-4 text-cuivre flex-shrink-0" />
               <span>{portfolioContent.contact.location}</span>
             </div>
 
-            {/* Contact Cards: Compact height 60-68px, gap 10-12px with brand colors */}
+            {/* Contact Channels: Clean, unified executive aesthetic */}
             <div className="w-full space-y-2.5 sm:space-y-3">
               {portfolioContent.contact.channels.map((channel, idx) => {
                 const isWhatsApp = channel.type === "whatsapp";
-                const isEmail = channel.type === "email";
 
                 return (
                   <a
@@ -141,50 +140,28 @@ export const Contact: React.FC = () => {
                     href={channel.actionUrl}
                     target={channel.type === "email" ? undefined : "_blank"}
                     rel={channel.type === "email" ? undefined : "noopener noreferrer"}
-                    className={`group min-h-[62px] p-3.5 sm:p-4 rounded-2xl border flex items-center justify-between transition-all duration-[220ms] ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cuivre shadow-2xs ${
-                      isWhatsApp
-                        ? "bg-[#113833] border-emerald-500/30 hover:border-emerald-400 hover:bg-[#14423c]"
-                        : isEmail
-                        ? "bg-[#1f383a] border-amber-500/30 hover:border-amber-400 hover:bg-[#254345]"
-                        : "bg-[#1a3337] border-rose-500/30 hover:border-rose-400 hover:bg-[#203c40]"
-                    }`}
+                    className="group min-h-[64px] p-4 rounded-2xl bg-vert-profond-hover/90 border border-vert-profond-light flex items-center justify-between transition-all duration-[200ms] ease-out hover:border-cuivre/60 hover:bg-vert-profond focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cuivre shadow-2xs"
                   >
                     <div className="flex items-center gap-3.5">
-                      <div
-                        className={`w-10 h-10 rounded-xl flex items-center justify-center shadow-2xs group-hover:scale-105 transition-all duration-[220ms] flex-shrink-0 ${
-                          isWhatsApp
-                            ? "bg-emerald-500/20 text-[#25D366]"
-                            : isEmail
-                            ? "bg-amber-500/20 text-amber-300"
-                            : "bg-rose-500/20 text-rose-300"
-                        }`}
-                      >
+                      <div className="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center shadow-2xs group-hover:bg-cuivre group-hover:text-white transition-all duration-[200ms] flex-shrink-0">
                         {channel.type === "email" ? (
                           <Mail className="w-4 h-4" />
-                        ) : channel.type === "whatsapp" ? (
-                          <WhatsAppIcon className="w-4 h-4" />
+                        ) : isWhatsApp ? (
+                          <WhatsAppIcon className="w-4 h-4 text-[#25D366] group-hover:text-white" />
                         ) : (
                           <TikTokIcon className="w-4 h-4" />
                         )}
                       </div>
                       <div>
-                        <span className="text-[11px] sm:text-xs uppercase tracking-wider text-ivoire/80 block font-medium">
+                        <span className="text-[11px] uppercase tracking-wider text-ivoire/75 block font-semibold">
                           {channel.label}
                         </span>
-                        <span className="text-sm sm:text-[15px] font-semibold text-blanc-chaud group-hover:text-white transition-colors duration-[220ms]">
+                        <span className="text-sm sm:text-[15px] font-semibold text-blanc-chaud group-hover:text-white transition-colors">
                           {channel.value}
                         </span>
                       </div>
                     </div>
-                    <ArrowUpRight
-                      className={`w-4 h-4 transition-transform duration-[220ms] ease-out group-hover:translate-x-[3px] ${
-                        isWhatsApp
-                          ? "text-[#25D366]"
-                          : isEmail
-                          ? "text-amber-300"
-                          : "text-rose-300"
-                      }`}
-                    />
+                    <ArrowUpRight className="w-4 h-4 text-ivoire/60 transition-transform duration-[200ms] ease-out group-hover:text-cuivre group-hover:translate-x-[2px] group-hover:-translate-y-[2px]" />
                   </a>
                 );
               })}
@@ -317,64 +294,14 @@ export const Contact: React.FC = () => {
                   />
                 </div>
 
-                {/* Message avec Modèles Rapides d'échange */}
+                {/* Message */}
                 <div>
-                  <div className="flex flex-wrap items-center justify-between gap-1 mb-1.5">
-                    <label
-                      htmlFor="message"
-                      className="block text-xs sm:text-[13px] font-semibold uppercase tracking-wider text-ivoire/90"
-                    >
-                      Votre message <span className="text-cuivre">*</span>
-                    </label>
-                    <span className="text-[11px] text-emerald-400 font-medium">
-                      Modèles rapides en 1 clic :
-                    </span>
-                  </div>
-
-                  {/* 3 Quick Template Pills */}
-                  <div className="flex flex-wrap gap-1.5 mb-2.5">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setFormData((prev) => ({
-                          ...prev,
-                          subject: "Sourcing & Approvisionnement Chine ➔ Cotonou",
-                          message: "Bonjour Morgan, j'ai un projet d'approvisionnement en cours depuis la Chine et je souhaite être accompagné pour auditer les usines, négocier les tarifs et sécuriser l'acheminement logistique jusqu'à Cotonou.",
-                        }));
-                      }}
-                      className="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#133c36] text-emerald-300 border border-emerald-500/30 hover:border-emerald-400 hover:bg-[#194c44] active:scale-95 transition-all cursor-pointer"
-                    >
-                      📦 Sourcing Chine ➔ Bénin
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setFormData((prev) => ({
-                          ...prev,
-                          subject: "Inscription Coaching & Accompagnement",
-                          message: "Bonjour Morgan, je souhaite m'inscrire à l'une de vos formules de coaching pour maîtriser le sourcing direct usine et devenir autonome sur les plateformes chinoises.",
-                        }));
-                      }}
-                      className="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#362f1c] text-amber-300 border border-amber-500/30 hover:border-amber-400 hover:bg-[#453c24] active:scale-95 transition-all cursor-pointer"
-                    >
-                      🎓 Programme Coaching
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setFormData((prev) => ({
-                          ...prev,
-                          subject: "Audit de solvabilité Fournisseur & Paiements",
-                          message: "Bonjour Morgan, j'ai identifié un fournisseur potentiel et je souhaite réaliser un audit complet de conformité avant d'engager des paiements par Alipay ou virement.",
-                        }));
-                      }}
-                      className="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#1c2c36] text-cyan-300 border border-cyan-500/30 hover:border-cyan-400 hover:bg-[#253945] active:scale-95 transition-all cursor-pointer"
-                    >
-                      🔍 Audit Fournisseur
-                    </button>
-                  </div>
+                  <label
+                    htmlFor="message"
+                    className="block text-xs sm:text-[13px] font-semibold uppercase tracking-wider text-ivoire/90 mb-1.5"
+                  >
+                    Votre message <span className="text-cuivre">*</span>
+                  </label>
 
                   <textarea
                     id="message"
@@ -382,9 +309,9 @@ export const Contact: React.FC = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows={3}
-                    placeholder="Précisez votre demande, vos destinations ou les objectifs de votre démarche..."
-                    className="w-full min-h-[105px] px-4 py-2.5 rounded-xl bg-vert-profond border border-vert-profond-light text-blanc-chaud text-sm sm:text-[15px] placeholder:text-ivoire/75 focus:border-cuivre focus:outline-none focus:ring-2 focus:ring-cuivre focus:ring-offset-2 focus:ring-offset-vert-profond transition-all duration-[200ms] resize-y"
+                    rows={4}
+                    placeholder="Précisez votre projet, les produits ciblés, les volumes envisagés ou vos questions..."
+                    className="w-full min-h-[110px] px-4 py-3 rounded-xl bg-vert-profond border border-vert-profond-light text-blanc-chaud text-sm sm:text-[15px] placeholder:text-ivoire/60 focus:border-cuivre focus:outline-none focus:ring-2 focus:ring-cuivre focus:ring-offset-2 focus:ring-offset-vert-profond transition-all duration-[200ms] resize-y"
                   />
                 </div>
 
