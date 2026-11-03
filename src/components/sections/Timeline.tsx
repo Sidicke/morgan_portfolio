@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { motion, useScroll, useSpring } from "framer-motion";
 import {
   Compass,
@@ -8,6 +10,10 @@ import {
   Briefcase,
   Palette,
   Terminal,
+  MapPin,
+  Ship,
+  Images,
+  ArrowUpRight,
 } from "lucide-react";
 import { portfolioContent } from "@/content/portfolioData";
 
@@ -58,6 +64,19 @@ export const Timeline: React.FC = () => {
         return <Palette className="w-4 h-4 text-indigo-700" />;
       case 4:
         return <Terminal className="w-4 h-4 text-cyan-700" />;
+      default:
+        return <Briefcase className="w-4 h-4 text-cuivre" />;
+    }
+  };
+
+  const getGridIcon = (id: string) => {
+    switch (id) {
+      case "prospection-terrain":
+        return <MapPin className="w-4 h-4 text-amber-800" />;
+      case "consulting-logistique":
+        return <Compass className="w-4 h-4 text-emerald-800" />;
+      case "acheminement-reussi":
+        return <Ship className="w-4 h-4 text-cyan-800" />;
       default:
         return <Briefcase className="w-4 h-4 text-cuivre" />;
     }
@@ -204,6 +223,107 @@ export const Timeline: React.FC = () => {
                 </motion.div>
               );
             })}
+          </div>
+        </div>
+
+        {/* ============================================================
+            3 GRILLES INTERACTIVES : PROSPECTION / CONSULTING / ACHEMINEMENT
+           ============================================================ */}
+        <div className="mt-16 sm:mt-20 pt-12 sm:pt-14 border-t border-sable-border/90">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 sm:mb-10"
+          >
+            <div>
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-vert-profond/10 border border-vert-profond/20 text-vert-profond text-xs font-bold uppercase tracking-wider mb-2.5">
+                <Images className="w-3.5 h-3.5 text-cuivre" />
+                <span>Action Terrain · BARON MERIDIAN</span>
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-encre tracking-tight">
+                {portfolioContent.timeline.fieldGridsHeading}
+              </h3>
+            </div>
+            <p className="text-sm sm:text-[15px] text-encre-light max-w-md font-sans leading-relaxed">
+              {portfolioContent.timeline.fieldGridsSubtitle}
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-7">
+            {portfolioContent.timeline.fieldGrids.map((grid, idx) => (
+              <motion.div
+                key={grid.id}
+                initial={{ opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{
+                  duration: 0.5,
+                  delay: idx * 0.1,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+              >
+                <Link
+                  href={`/parcours/${grid.id}`}
+                  aria-label={`Découvrir la page dédiée à ${grid.title}`}
+                  className="group h-full text-left flex flex-col rounded-3xl bg-white border border-sable-border overflow-hidden shadow-xs hover:shadow-lg hover:border-cuivre/50 transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vert-profond"
+                >
+                  {/* Single Clean Preview Image Container */}
+                  <div className="relative w-full aspect-[16/10] bg-stone-900 overflow-hidden border-b border-sable-border">
+                    <Image
+                      src={grid.previewImage}
+                      alt={grid.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
+                    />
+
+                    {/* Subtle gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent" />
+
+                    {/* Top Number & Media Count Pill */}
+                    <div className="absolute top-3.5 inset-x-3.5 flex items-center justify-between">
+                      <span className="px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-xs text-encre font-display font-extrabold text-xs shadow-2xs">
+                        {grid.number}
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-xs text-white text-[11px] font-semibold">
+                        <Images className="w-3.5 h-3.5 text-amber-300" />
+                        <span>{grid.images.length} photos</span>
+                      </span>
+                    </div>
+
+                    {/* Bottom Left Category Badge on Cover */}
+                    <div className="absolute bottom-3 left-3.5">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-[11px] font-bold bg-white/95 backdrop-blur-xs text-encre border border-white/80 shadow-sm">
+                        {getGridIcon(grid.id)}
+                        <span>{grid.badge}</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Card Body */}
+                  <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                      <h4 className="font-display font-extrabold text-xl text-encre mb-2 group-hover:text-vert-profond transition-colors">
+                        {grid.title}
+                      </h4>
+                      <p className="text-sm text-encre/85 leading-relaxed font-sans line-clamp-3 mb-4">
+                        {grid.shortDescription}
+                      </p>
+                    </div>
+
+                    {/* Interactive Footer Callout */}
+                    <div className="pt-3.5 border-t border-sable-border/80 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-vert-profond group-hover:text-cuivre transition-colors">
+                      <span>Voir toutes les photos & détails</span>
+                      <span className="w-8 h-8 rounded-full bg-[#FAF8F5] border border-sable-border flex items-center justify-center group-hover:bg-vert-profond group-hover:border-vert-profond group-hover:text-white transition-all">
+                        <ArrowUpRight className="w-4 h-4" />
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>

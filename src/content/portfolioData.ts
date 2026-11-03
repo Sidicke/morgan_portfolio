@@ -45,6 +45,27 @@ export interface TimelineMilestone {
   dotColor: string;
 }
 
+export interface TimelineFieldGridImage {
+  src: string;
+  alt: string;
+  caption: string;
+  type?: "image" | "video";
+}
+
+export interface TimelineFieldGrid {
+  id: string;
+  number: string;
+  title: string;
+  badge: string;
+  subtitle: string;
+  shortDescription: string;
+  fullDescription: string;
+  highlights: string[];
+  accentColor: string;
+  previewImage: string;
+  images: TimelineFieldGridImage[];
+}
+
 export interface CaseStudy {
   id: string;
   number: string;
@@ -109,6 +130,9 @@ export interface PortfolioContentV4 {
     heading: string;
     intro: string;
     milestones: TimelineMilestone[];
+    fieldGridsHeading: string;
+    fieldGridsSubtitle: string;
+    fieldGrids: TimelineFieldGrid[];
   };
   caseStudies: {
     sectionBadge: string;
@@ -344,6 +368,240 @@ export const portfolioContent: PortfolioContentV4 = {
         badgeColor: "cyan",
         colorClass: "bg-cyan-50 text-cyan-900 border-cyan-300",
         dotColor: "bg-cyan-600",
+      },
+    ],
+    fieldGridsHeading: "Immersion & Opérations sur le Terrain",
+    fieldGridsSubtitle:
+      "Cliquez sur chaque grille pour découvrir les preuves visuelles et les descriptions détaillées de nos opérations.",
+    fieldGrids: [
+      {
+        id: "prospection-terrain",
+        number: "01",
+        title: "Prospection Terrain",
+        badge: "Déploiement & Écoute",
+        subtitle: "Immersion directe auprès des commerçants et entrepreneurs locaux",
+        shortDescription:
+          "Déploiement de l'équipe Baron Meridian sur le terrain pour aller à la rencontre des commerçants, comprendre leurs besoins d'approvisionnement et présenter nos solutions d'import-export.",
+        fullDescription:
+          "À travers les déploiements terrain de BARON MERIDIAN, notre équipe va directement à la rencontre des commerçants, grossistes et porteurs de projets au Bénin. Cette présence active sur le terrain permet de recueillir leurs besoins réels, d'expliquer en face-à-face le fonctionnement sécurisé du sourcing international (Chine & France) et d'établir un diagnostic précis avant toute opération d'importation.",
+        highlights: [
+          "Déploiement mobile de l'équipe Baron Meridian dans les zones commerciales",
+          "Entretiens directs avec les commerçants et présentation des garanties d'importation",
+          "Sensibilisation sur la sécurisation des achats et diagnostic personnalisé sur place",
+        ],
+        accentColor: "bg-amber-50 text-amber-900 border-amber-300",
+        previewImage: "/images/parcours/prospection-1.jpeg",
+        images: [
+          {
+            src: "/images/parcours/prospection-1.jpeg",
+            alt: "Équipe Baron Meridian déployée en prospection sur le terrain",
+            caption:
+              "Déploiement de l'équipe Baron Meridian sur le terrain au contact direct des entrepreneurs et commerçants.",
+          },
+          {
+            src: "/images/parcours/prospection-2.jpeg",
+            alt: "Engagement et dynamisme de l'équipe Baron Meridian en mission terrain",
+            caption:
+              "Mobilisation et cohésion de l'équipe Baron Meridian lors d'une campagne de prospection locale.",
+          },
+          {
+            src: "/images/parcours/prospection-3.jpeg",
+            alt: "Analyse mobile et coordination sur le terrain",
+            caption:
+              "Vérification en temps réel des catalogues fournisseurs et démonstration mobile sur le terrain.",
+          },
+          {
+            src: "/images/parcours/prospection-4.jpeg",
+            alt: "Entretien de proximité Baron Meridian Import-Export avec une commerçante",
+            caption:
+              "Séance d'écoute et de conseil en face-à-face pour analyser les besoins d'approvisionnement d'une cliente.",
+          },
+          {
+            src: "/images/parcours/prospection-5.jpeg",
+            alt: "Remise de supports et présentation Baron Meridian à une cliente",
+            caption:
+              "Présentation détaillée de nos procédures d'importation et remise de nos coordonnées professionnelles.",
+          },
+          {
+            src: "/images/parcours/prospection-6.jpeg",
+            alt: "Cellule de suivi et débriefing de prospection Baron Meridian",
+            caption:
+              "Point d'équipe en fin de journée : traitement des demandes recueillies et relance téléphonique des prospects.",
+          },
+        ],
+      },
+      {
+        id: "consulting-logistique",
+        number: "02",
+        title: "Consulting & Logistique",
+        badge: "Stratégie & Coordination",
+        subtitle: "Devis détaillés, négociation usine en Chine, contrats et suivi cargo",
+        shortDescription:
+          "Cadrage contractuel, cotations transparentes, négociation directe avec les usines chinoises, contrôle qualité avant expédition et facturation officielle Baron Meridian.",
+        fullDescription:
+          "Le pôle Consulting & Logistique de BARON MERIDIAN assure une traçabilité documentaire et opérationnelle intégrale : établissement des devis détaillés en FCFA, contractualisation sécurisée avec cachet officiel, échange direct avec les usines en Chine pour l'inspection visuelle des produits, marquage cargo personnalisé (BENIN CARGO 3011 / BOCOVO) et suivi des bordereaux de transport aérien et maritime.",
+        highlights: [
+          "Factures de commande officielles Baron Meridian et contrats d'engagement cachetés",
+          "Négociation directe avec les fabricants chinois et inspection photo avant emballage",
+          "Étiquetage cargo rigoureux (Benin Cargo 3011) et suivi des bordereaux jusqu'au bon de livraison",
+        ],
+        accentColor: "bg-emerald-50 text-emerald-900 border-emerald-300",
+        previewImage: "/images/parcours/prospection-4.jpeg",
+        images: [
+          {
+            src: "/images/parcours/consulting-1.jpeg",
+            alt: "Facture de commande officielle Baron Meridian cachetée et payée",
+            caption:
+              "Facture de commande officielle BARON MERIDIAN avec détail des coûts HT, taxes douanières et cachet PAYÉ.",
+          },
+          {
+            src: "/images/parcours/consulting-2.jpeg",
+            alt: "Négociation directe avec l'usine en Chine et instructions cargo",
+            caption:
+              "Échange direct avec le fabricant en Chine et transmission des instructions d'étiquetage (BENIN CARGO 3011 / BOCOVO).",
+          },
+          {
+            src: "/images/parcours/consulting-3.jpeg",
+            alt: "Inspection qualité et vérification du colis en usine chinoise",
+            caption:
+              "Contrôle qualité visuel : vérification du produit, des accessoires et du colisage protecteur avant expédition.",
+          },
+          {
+            src: "/images/parcours/consulting-4.jpeg",
+            alt: "Bordereau d'expédition logistique Yunda Express vers l'entrepôt maritime",
+            caption:
+              "Bordereau logistique interne en Chine acheminant la marchandise vers le hub d'expédition internationale (BENIN-SEA).",
+          },
+          {
+            src: "/images/parcours/consulting-5.jpeg",
+            alt: "Bon de livraison Benin Cargo tamponné LIVRÉ à Cotonou",
+            caption:
+              "Bon de livraison officiel Benin Cargo (Transport aérien CN -> BJ) tamponné et signé à la réception à Cotonou.",
+          },
+          {
+            src: "/images/parcours/consulting-6.jpeg",
+            alt: "Contrat d'engagement et clauses de garantie Baron Meridian",
+            caption:
+              "Cadre contractuel clair définissant les engagements de livraison, de confidentialité et de garantie signés par le DG Morgan Bocovo.",
+          },
+          {
+            src: "/images/parcours/consulting-7.jpeg",
+            alt: "Facture de commande Baron Meridian pour expédition aérienne",
+            caption:
+              "Facture de commande structurée précisant la référence dossier, le mode d'expédition (Avion) et les frais de service.",
+          },
+          {
+            src: "/images/parcours/consulting-8.jpeg",
+            alt: "Devis détaillé et cotation multi-articles pour un client",
+            caption:
+              "Chiffrage transparent d'un panier d'approvisionnement varié (vêtements, maroquinerie, accessoires) validé en FCFA.",
+          },
+          {
+            src: "/images/parcours/consulting-9.jpeg",
+            alt: "Cotation détaillée hors-taxes et calcul des frais de retrait",
+            caption:
+              "Préparation minutieuse de la liste de commande avec tarification unitaire HT pour validation budgétaire client.",
+          },
+          {
+            src: "/images/parcours/consulting-10.jpeg",
+            alt: "Rédaction et vérification manuelle d'une facture de commande client",
+            caption:
+              "Établissement sur-mesure du dossier de commande client lors d'une séance de consulting.",
+          },
+          {
+            src: "/images/parcours/consulting-11.jpeg",
+            alt: "Validation comptable d'un dossier d'importation Baron Meridian",
+            caption:
+              "Dossier de commande complet validé avec quittance de règlement Mobile Money et cachet de la direction générale.",
+          },
+          {
+            src: "/images/parcours/consulting-12.jpeg",
+            alt: "Exemplaire d'archive de facture de commande Baron Meridian",
+            caption:
+              "Traçabilité documentaire systématique pour chaque opération d'achat et de transit international.",
+          },
+        ],
+      },
+      {
+        id: "acheminement-reussi",
+        number: "03",
+        title: "Acheminement Réussi",
+        badge: "Engagement & Résultat",
+        subtitle: "Réception physique des colis et cartons sécurisés à Cotonou",
+        shortDescription:
+          "Preuves concrètes de nos arrivages : colis scellés au nom de Baron Meridian, cartons groupés réceptionnés intacts à Cotonou et remise finale aux clients.",
+        fullDescription:
+          "Chaque opération pilotée par BARON MERIDIAN aboutit à un acheminement physique vérifiable. Du départ des entrepôts de Guangzhou et Yiwu jusqu'à l'arrivée effective à Cotonou, tous nos colis portent un marquage d'identification strict (BARON MERIDIAN / BOCOVO Morgan) garantissant zéro perte et une remise conforme aux clients.",
+        highlights: [
+          "Colis scellés et identifiés BARON MERIDIAN / BOCOVO Morgan jusqu'à Cotonou",
+          "Traçabilité complète par code-barres (STO / ZTO Express & Benin Cargo 3011)",
+          "Réception physique intacte des cartons de groupage et livraison finale aux clients",
+        ],
+        accentColor: "bg-cyan-50 text-cyan-900 border-cyan-300",
+        previewImage: "/images/parcours/acheminement-2.jpeg",
+        images: [
+          {
+            src: "/images/parcours/acheminement-1.jpeg",
+            alt: "Colis scellé et badgé Baron Meridian arrivé à Cotonou",
+            caption:
+              "Colis officiel badgé BARON MERIDIAN adressé à BOCOVO Morgan (+229 67 17 43 69 — Bénin, Cotonou).",
+          },
+          {
+            src: "/images/parcours/acheminement-2.jpeg",
+            alt: "Carton de groupage 3011-Benin Cargo + BARON MERIDIAN",
+            caption:
+              "Carton de marchandise (5,25 kg) clairement identifié BARON MERIDIAN pour un transit sécurisé sans perte.",
+          },
+          {
+            src: "/images/parcours/acheminement-3.jpeg",
+            alt: "Colis STO Express avec étiquette BENIN CARGO 3011 / BOCOVO FRANCK",
+            caption:
+              "Double étiquetage de sécurité (code-barres usine + fiche d'acheminement Benin Cargo 3011).",
+          },
+          {
+            src: "/images/parcours/acheminement-4.jpeg",
+            alt: "Lot de cartons et colis réceptionnés à destination",
+            caption:
+              "Arrivage réussi : ensemble de cartons et colis clients réceptionnés intacts et prêts pour la remise finale.",
+          },
+          {
+            src: "/images/parcours/acheminement-5.jpeg",
+            alt: "Emballage protégé à bulles avec mention 3011-Benin Cargo + BARON MERIDIAN",
+            caption:
+              "Protection renforcée des marchandises fragiles avec mention d'inspection photo obligatoire en entrepôt.",
+          },
+          {
+            src: "/images/parcours/acheminement-6.jpeg",
+            alt: "Plusieurs colis clients triés après dégroupage",
+            caption:
+              "Tri et vérification des différents lots clients à l'ouverture des balles de groupage.",
+          },
+          {
+            src: "/images/parcours/acheminement-7.jpeg",
+            alt: "Colis express ZTO acheminé depuis Guangzhou vers le Bénin",
+            caption:
+              "Suivi de bout en bout d'un pli de marchandise express depuis la province du Guangdong jusqu'à Cotonou.",
+          },
+          {
+            src: "/images/parcours/acheminement-8.jpeg",
+            alt: "Préparation et marquage manuel de colis en entrepôt",
+            caption:
+              "Identification manuelle doublée sur chaque sachet logistique avant départ cargo.",
+          },
+          {
+            src: "/images/parcours/acheminement-9.jpeg",
+            alt: "Étiquette de suivi ZTO Express vers le hub Benin Cargo",
+            caption:
+              "Étiquette de traçabilité ZTO Express confirmant l'enregistrement du colis en centre de tri.",
+          },
+          {
+            src: "/images/parcours/acheminement-video.mp4",
+            alt: "Vidéo de contrôle et réception des colis acheminés",
+            caption:
+              "Vidéo opérationnelle montrant la vérification physique des colis acheminés avec succès.",
+            type: "video",
+          },
+        ],
       },
     ],
   },
