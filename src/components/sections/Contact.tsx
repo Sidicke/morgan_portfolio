@@ -68,7 +68,7 @@ export const Contact: React.FC = () => {
     setTimeout(() => {
       // Direct honest feedback: prepare direct mailto transmission with the actual user message
       const subjectEncoded = encodeURIComponent(
-        formData.subject.trim() || "Demande de contact — Projet d'importation"
+        formData.subject.trim() || "Demande de contact : Projet d'importation"
       );
       const bodyEncoded = encodeURIComponent(
         `Nom: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
@@ -129,38 +129,65 @@ export const Contact: React.FC = () => {
               <span>{portfolioContent.contact.location}</span>
             </div>
 
-            {/* Contact Cards: Compact height 60-68px, gap 10-12px */}
+            {/* Contact Cards: Compact height 60-68px, gap 10-12px with brand colors */}
             <div className="w-full space-y-2.5 sm:space-y-3">
-              {portfolioContent.contact.channels.map((channel, idx) => (
-                <a
-                  key={idx}
-                  href={channel.actionUrl}
-                  target={channel.type === "email" ? undefined : "_blank"}
-                  rel={channel.type === "email" ? undefined : "noopener noreferrer"}
-                  className="group min-h-[62px] p-3.5 sm:p-4 rounded-2xl bg-vert-profond-hover border border-vert-profond-light/80 hover:border-cuivre/70 hover:-translate-y-0.5 flex items-center justify-between transition-all duration-[220ms] ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cuivre focus-visible:ring-offset-2 focus-visible:ring-offset-vert-profond shadow-2xs"
-                >
-                  <div className="flex items-center gap-3.5">
-                    <div className="w-9 h-9 rounded-xl bg-vert-profond flex items-center justify-center text-cuivre-light shadow-2xs group-hover:scale-105 group-hover:text-cuivre transition-all duration-[220ms] flex-shrink-0">
-                      {channel.type === "email" ? (
-                        <Mail className="w-4 h-4" />
-                      ) : channel.type === "whatsapp" ? (
-                        <WhatsAppIcon className="w-4 h-4" />
-                      ) : (
-                        <TikTokIcon className="w-4 h-4" />
-                      )}
+              {portfolioContent.contact.channels.map((channel, idx) => {
+                const isWhatsApp = channel.type === "whatsapp";
+                const isEmail = channel.type === "email";
+
+                return (
+                  <a
+                    key={idx}
+                    href={channel.actionUrl}
+                    target={channel.type === "email" ? undefined : "_blank"}
+                    rel={channel.type === "email" ? undefined : "noopener noreferrer"}
+                    className={`group min-h-[62px] p-3.5 sm:p-4 rounded-2xl border flex items-center justify-between transition-all duration-[220ms] ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cuivre shadow-2xs ${
+                      isWhatsApp
+                        ? "bg-[#113833] border-emerald-500/30 hover:border-emerald-400 hover:bg-[#14423c]"
+                        : isEmail
+                        ? "bg-[#1f383a] border-amber-500/30 hover:border-amber-400 hover:bg-[#254345]"
+                        : "bg-[#1a3337] border-rose-500/30 hover:border-rose-400 hover:bg-[#203c40]"
+                    }`}
+                  >
+                    <div className="flex items-center gap-3.5">
+                      <div
+                        className={`w-10 h-10 rounded-xl flex items-center justify-center shadow-2xs group-hover:scale-105 transition-all duration-[220ms] flex-shrink-0 ${
+                          isWhatsApp
+                            ? "bg-emerald-500/20 text-[#25D366]"
+                            : isEmail
+                            ? "bg-amber-500/20 text-amber-300"
+                            : "bg-rose-500/20 text-rose-300"
+                        }`}
+                      >
+                        {channel.type === "email" ? (
+                          <Mail className="w-4 h-4" />
+                        ) : channel.type === "whatsapp" ? (
+                          <WhatsAppIcon className="w-4 h-4" />
+                        ) : (
+                          <TikTokIcon className="w-4 h-4" />
+                        )}
+                      </div>
+                      <div>
+                        <span className="text-[11px] sm:text-xs uppercase tracking-wider text-ivoire/80 block font-medium">
+                          {channel.label}
+                        </span>
+                        <span className="text-sm sm:text-[15px] font-semibold text-blanc-chaud group-hover:text-white transition-colors duration-[220ms]">
+                          {channel.value}
+                        </span>
+                      </div>
                     </div>
-                    <div>
-                      <span className="text-[11px] sm:text-xs uppercase tracking-wider text-ivoire/85 block font-medium">
-                        {channel.label}
-                      </span>
-                      <span className="text-sm sm:text-[15px] font-semibold text-blanc-chaud group-hover:text-cuivre transition-colors duration-[220ms]">
-                        {channel.value}
-                      </span>
-                    </div>
-                  </div>
-                  <ArrowUpRight className="w-4 h-4 text-cuivre transition-transform duration-[220ms] ease-out group-hover:translate-x-[3px]" />
-                </a>
-              ))}
+                    <ArrowUpRight
+                      className={`w-4 h-4 transition-transform duration-[220ms] ease-out group-hover:translate-x-[3px] ${
+                        isWhatsApp
+                          ? "text-[#25D366]"
+                          : isEmail
+                          ? "text-amber-300"
+                          : "text-rose-300"
+                      }`}
+                    />
+                  </a>
+                );
+              })}
             </div>
 
             {/* Factual Data Notice */}

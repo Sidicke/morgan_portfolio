@@ -1,10 +1,10 @@
 import React from "react";
 import { Header } from "@/components/layout/Header";
 import { Hero } from "@/components/sections/Hero";
-import { About } from "@/components/sections/About";
 import { Expertises } from "@/components/sections/Expertises";
 import { Timeline } from "@/components/sections/Timeline";
 import { CaseStudies } from "@/components/sections/CaseStudies";
+import { About } from "@/components/sections/About";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/layout/Footer";
 
@@ -23,10 +23,10 @@ export default function Home() {
 
       <main id="main-content" className="flex-1">
         <Hero />
-        <About />
         <Expertises />
         <Timeline />
         <CaseStudies />
+        <About />
         <Contact />
       </main>
 

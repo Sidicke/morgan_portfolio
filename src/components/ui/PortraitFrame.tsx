@@ -67,7 +67,7 @@ export const PortraitFrame: React.FC<PortraitFrameProps> = ({ className = "" }) 
       <div className="relative aspect-[3/4] w-full flex items-end justify-center overflow-hidden">
         <Image
           src="/images/portrait-cutout.png"
-          alt="Morgan Bocovo — Entrepreneur & Conseiller en Projets d'Importation"
+          alt="Morgan Bocovo : Entrepreneur & Conseiller en Projets d'Importation"
           fill
           priority
           sizes="(max-width: 768px) 95vw, (max-width: 1280px) 55vw, 700px"

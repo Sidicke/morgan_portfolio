@@ -33,7 +33,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://morgan-entrepreneur.com"),
-  title: "Morgan Bocovo — Entrepreneur & Conseiller en Projets d'Importation",
+  title: "Morgan Bocovo : Entrepreneur & Conseiller en Projets d'Importation",
   description:
     "Portfolio professionnel de Morgan Bocovo. Sécurisation intégrale de vos approvisionnements et circuits d'importation depuis la Chine et la France vers le Bénin.",
   keywords: [
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_FR",
     url: "https://morgan-entrepreneur.com",
-    title: "Morgan Bocovo — Entrepreneur & Conseiller en Projets d'Importation",
+    title: "Morgan Bocovo : Entrepreneur & Conseiller en Projets d'Importation",
     description:
       "Sécuriser chaque étape de vos approvisionnements pour transformer vos projets d'import en réussites durables.",
     siteName: "Morgan Bocovo",

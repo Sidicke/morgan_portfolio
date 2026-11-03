@@ -124,23 +124,23 @@ export const CaseStudies: React.FC = () => {
                   />
                 )}
 
-                {/* Point de départ : CHINE */}
+                {/* Point de départ : CHINE (Rouge & Or) */}
                 <g className="origin-center">
                   <circle
                     cx="50"
                     cy="65"
                     r="12"
-                    fill="#A65C37"
-                    fillOpacity="0.12"
-                    stroke="#A65C37"
-                    strokeWidth="1"
+                    fill="#DE2910"
+                    fillOpacity="0.15"
+                    stroke="#DE2910"
+                    strokeWidth="1.5"
                   />
-                  <circle cx="50" cy="65" r="5" fill="#A65C37" />
+                  <circle cx="50" cy="65" r="5" fill="#DE2910" />
                   <text
                     x="50"
                     y="36"
                     textAnchor="middle"
-                    className="font-display font-extrabold text-[13px] fill-encre tracking-wider"
+                    className="font-display font-extrabold text-[13px] fill-red-800 tracking-wider"
                   >
                     CHINE
                   </text>
@@ -148,22 +148,22 @@ export const CaseStudies: React.FC = () => {
                     x="50"
                     y="92"
                     textAnchor="middle"
-                    className="font-sans text-[10px] fill-encre-muted font-medium"
+                    className="font-sans text-[10px] fill-encre-muted font-semibold"
                   >
-                    Départ usine
+                    Usines vérifiées
                   </text>
                 </g>
 
-                {/* Point d'arrivée : COTONOU */}
+                {/* Point d'arrivée : COTONOU (Émeraude / Bénin) */}
                 <g className="origin-center">
                   <motion.circle
                     cx="310"
                     cy="155"
                     r="12"
-                    fill="#173E3F"
-                    fillOpacity="0.12"
-                    stroke="#173E3F"
-                    strokeWidth="1"
+                    fill="#059669"
+                    fillOpacity="0.15"
+                    stroke="#059669"
+                    strokeWidth="1.5"
                     initial={{ scale: 0.8 }}
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
@@ -173,7 +173,7 @@ export const CaseStudies: React.FC = () => {
                     cx="310"
                     cy="155"
                     r="5"
-                    fill="#173E3F"
+                    fill="#059669"
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
@@ -183,7 +183,7 @@ export const CaseStudies: React.FC = () => {
                     x="310"
                     y="126"
                     textAnchor="middle"
-                    className="font-display font-extrabold text-[13px] fill-encre tracking-wider"
+                    className="font-display font-extrabold text-[13px] fill-emerald-900 tracking-wider"
                   >
                     COTONOU
                   </text>
@@ -191,9 +191,9 @@ export const CaseStudies: React.FC = () => {
                     x="310"
                     y="182"
                     textAnchor="middle"
-                    className="font-sans text-[10px] fill-encre-muted font-medium"
+                    className="font-sans text-[10px] fill-encre-muted font-semibold"
                   >
-                    Livraison & Dédouanement
+                    Réception conforme
                   </text>
                 </g>
               </svg>
@@ -223,7 +223,7 @@ export const CaseStudies: React.FC = () => {
             {/* Titre du cas d'étude visible immédiatement */}
             <div className="mb-6">
               <span className="text-xs uppercase tracking-widest font-semibold text-cuivre block mb-1.5">
-                Mission Nº 01 — Approvisionnement Wholesale
+                Mission 01 : Approvisionnement Wholesale
               </span>
               <h3 className="font-display font-bold text-2xl sm:text-[1.65rem] text-encre leading-snug">
                 Approvisionnement Chine ➔ Cotonou
@@ -256,31 +256,31 @@ export const CaseStudies: React.FC = () => {
                 Résultats
               </span>
 
-              {/* Grille de Chiffres Clés Confirmés */}
+              {/* Grille de Chiffres Clés avec couleurs réelles */}
               <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-4">
-                <div className="p-3.5 sm:p-4 rounded-2xl bg-blanc-chaud border border-sable-border text-center">
-                  <div className="font-display font-extrabold text-2xl sm:text-3xl text-cuivre mb-0.5">
-                    −35 %
+                <div className="p-3.5 sm:p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-center">
+                  <div className="font-display font-extrabold text-2xl sm:text-3xl text-emerald-700 mb-0.5">
+                    -35 %
                   </div>
-                  <div className="text-xs sm:text-[13px] text-encre-light font-medium">
+                  <div className="text-xs sm:text-[13px] text-emerald-900 font-semibold">
                     Coûts d&apos;achat
                   </div>
                 </div>
 
-                <div className="p-3.5 sm:p-4 rounded-2xl bg-blanc-chaud border border-sable-border text-center">
-                  <div className="font-display font-extrabold text-2xl sm:text-3xl text-vert-profond mb-0.5">
+                <div className="p-3.5 sm:p-4 rounded-2xl bg-blue-50 border border-blue-200 text-center">
+                  <div className="font-display font-extrabold text-2xl sm:text-3xl text-blue-700 mb-0.5">
                     100 %
                   </div>
-                  <div className="text-xs sm:text-[13px] text-encre-light font-medium">
-                    Conformes
+                  <div className="text-xs sm:text-[13px] text-blue-900 font-semibold">
+                    Fonds sécurisés
                   </div>
                 </div>
 
-                <div className="p-3.5 sm:p-4 rounded-2xl bg-blanc-chaud border border-sable-border text-center">
-                  <div className="font-display font-extrabold text-2xl sm:text-3xl text-encre mb-0.5">
+                <div className="p-3.5 sm:p-4 rounded-2xl bg-amber-50 border border-amber-200 text-center">
+                  <div className="font-display font-extrabold text-2xl sm:text-3xl text-amber-700 mb-0.5">
                     0
                   </div>
-                  <div className="text-xs sm:text-[13px] text-encre-light font-medium">
+                  <div className="text-xs sm:text-[13px] text-amber-900 font-semibold">
                     Perte financière
                   </div>
                 </div>

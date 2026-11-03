@@ -1,195 +1,98 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { Quote } from "lucide-react";
 import { portfolioContent } from "@/content/portfolioData";
 
 export const About: React.FC = () => {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setPrefersReducedMotion(
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      );
-    }
-  }, []);
+  const about = portfolioContent.about;
 
   return (
     <section
       id="a-propos"
-      className="py-20 sm:py-28 lg:py-36 bg-blanc-chaud border-b border-sable-border overflow-hidden"
+      className="py-16 sm:py-20 lg:py-24 bg-[#F8F5EE] border-b border-sable-border relative overflow-hidden"
     >
-      <div className="mx-auto w-full max-w-container px-5 sm:px-8 lg:px-14">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 22 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-3xl mb-12 sm:mb-16 lg:mb-20"
-        >
-          <span className="text-xs font-semibold tracking-wider uppercase text-cuivre block mb-3.5">
-            {portfolioContent.about.sectionBadge}
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] xl:text-[3.15rem] font-display font-extrabold text-encre leading-[1.18] tracking-tight">
-            {portfolioContent.about.heading}
-          </h2>
-        </motion.div>
+      {/* Subtle warm light ambient accents */}
+      <div
+        className="absolute top-10 right-10 w-96 h-96 bg-vert-profond/5 rounded-full blur-[120px] pointer-events-none"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute bottom-10 left-10 w-96 h-96 bg-cuivre/5 rounded-full blur-[120px] pointer-events-none"
+        aria-hidden="true"
+      />
 
-        {/* Editorial Composition: 55% Text & Principles / 45% Field Photography */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-20 items-start">
-          {/* Left Column (55-58% on Desktop): Presentation Narrative + Action Principles */}
-          <div className="lg:col-span-7 flex flex-col justify-start">
-            {/* 1. Presentation Narrative */}
-            <div className="mb-8 lg:mb-12">
-              {/* Introduction: Strong Typographic Presence */}
-              <motion.p
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.65, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-                className="text-xl sm:text-2xl lg:text-[1.55rem] xl:text-[1.65rem] text-encre font-display font-semibold leading-[1.4] sm:leading-[1.38] tracking-tight mb-5 sm:mb-7"
-              >
-                {portfolioContent.about.leadParagraph}
-              </motion.p>
+      <div className="mx-auto w-full max-w-container px-5 sm:px-8 lg:px-14 relative z-10">
+        {/* Compact 2-column layout: Left Narrative & Pillars (60%) / Right Portrait (40%) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-14 items-center">
+          {/* Left Column: Sharp Editorial Summary & Action Pillars */}
+          <div className="lg:col-span-7 flex flex-col items-start">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cuivre/10 border border-cuivre/20 text-cuivre text-xs font-semibold uppercase tracking-wider mb-3.5">
+              <span>{about.sectionBadge}</span>
+            </span>
 
-              {/* Description: Light, Human & Direct */}
-              <motion.p
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.65, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                className="text-[16px] sm:text-[17px] text-encre/90 leading-[1.65] font-sans font-normal"
-              >
-                {portfolioContent.about.bodyParagraph}
-              </motion.p>
-            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-encre leading-tight tracking-tight mb-4">
+              {about.heading}
+            </h2>
 
-            {/* 2. Mobile Photograph Insertion (Order 3 on Mobile: Titre -> Présentation -> Photo -> Principes) */}
-            <div className="block lg:hidden mb-10">
-              <motion.div
-                initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: prefersReducedMotion ? 0.01 : 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="group"
-              >
-                <div className="relative aspect-[3/4] max-h-[460px] w-full rounded-2xl overflow-hidden bg-ivoire border border-sable-border/90 shadow-xs">
-                  <Image
-                    src="/images/morgan-about.jpeg"
-                    alt="Morgan Bocovo — Engagement terrain et coordination logistique"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 500px"
-                    className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.01]"
-                  />
-                </div>
-                <p className="text-xs text-encre-muted font-sans font-normal mt-2.5 px-1 flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cuivre" />
-                  <span>Morgan Bocovo · Engagement terrain & rigueur opérationnelle</span>
-                </p>
-              </motion.div>
-            </div>
+            {/* Tight, impactful narrative (concise & executive) */}
+            <p className="text-[15.5px] sm:text-base text-encre/90 font-sans leading-relaxed mb-6 max-w-2xl">
+              {about.summary}
+            </p>
 
-            {/* 3. Action Principles (Order 4 on Mobile, integrated seamlessly on Desktop) */}
-            <div className="pt-2">
-              <motion.span
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.15 }}
-                className="text-xs uppercase tracking-widest font-semibold text-cuivre block mb-5"
-              >
-                Principes d&apos;action
-              </motion.span>
-
-              {/* Top Border Animated Divider */}
-              <motion.div
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                style={{ originX: 0 }}
-                className="w-full h-[1px] bg-sable-border"
-              />
-
-              {/* Engagements List */}
-              <div>
-                {portfolioContent.about.commitments.map((item, idx) => (
-                  <div key={item.number}>
-                    <motion.div
-                      initial={{ opacity: 0, y: 16 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-40px" }}
-                      transition={{
-                        duration: 0.55,
-                        delay: 0.12 * idx + 0.2,
-                        ease: [0.22, 1, 0.36, 1],
-                      }}
-                      className="py-5 sm:py-6 group cursor-default transition-colors"
-                    >
-                      {/* Number + Title with micro-interaction */}
-                      <div className="flex items-baseline gap-3.5 sm:gap-4 mb-2">
-                        <span className="font-display font-extrabold text-base sm:text-lg text-cuivre inline-block transition-transform duration-300 ease-out group-hover:translate-x-1 group-hover:text-vert-profond select-none">
-                          {item.number} —
-                        </span>
-                        <h3 className="font-display font-bold text-lg sm:text-xl lg:text-[1.25rem] text-encre group-hover:text-vert-profond transition-colors duration-200">
-                          {item.title}
-                        </h3>
-                      </div>
-
-                      {/* Description: 15-16.5px with comfortable line-height and contrast */}
-                      <p className="text-[15px] sm:text-[16px] lg:text-[16.5px] text-encre-light leading-[1.6] font-sans pl-10 sm:pl-11">
-                        {item.description}
-                      </p>
-                    </motion.div>
-
-                    {/* Horizontal Divider between items & bottom */}
-                    <motion.div
-                      initial={{ scaleX: 0 }}
-                      whileInView={{ scaleX: 1 }}
-                      viewport={{ once: true }}
-                      transition={{
-                        duration: 0.65,
-                        delay: 0.1 * idx + 0.25,
-                        ease: [0.22, 1, 0.36, 1],
-                      }}
-                      style={{ originX: 0 }}
-                      className="w-full h-[1px] bg-sable-border"
-                    />
+            {/* 3 Compact Action Pillars with tasteful colors */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full mb-6">
+              {about.pillars.map((pillar) => (
+                <div
+                  key={pillar.number}
+                  className="p-3.5 sm:p-4 rounded-2xl bg-white border border-sable-border shadow-2xs hover:shadow-xs transition-shadow"
+                >
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className={`text-[11px] font-bold px-2 py-0.5 rounded-md border ${pillar.color}`}>
+                      {pillar.number}
+                    </span>
+                    <h3 className="font-display font-bold text-xs sm:text-sm text-encre">
+                      {pillar.title}
+                    </h3>
                   </div>
-                ))}
+                  <p className="text-xs text-encre-light leading-relaxed">
+                    {pillar.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Highlight Quote with copper accent */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-white border-l-4 border-l-cuivre border border-sable-border shadow-2xs w-full flex items-start gap-3">
+              <Quote className="w-5 h-5 text-cuivre/60 flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="font-serif italic text-sm sm:text-base text-encre leading-snug">
+                  « {about.quote} »
+                </p>
+                <span className="text-[11px] font-semibold text-vert-profond uppercase tracking-wider block mt-1.5">
+                  {about.quoteAuthor}
+                </span>
               </div>
             </div>
           </div>
 
-          {/* Right Column (42-45% on Desktop): Desktop Field Photograph Frame */}
-          <div className="hidden lg:block lg:col-span-5 sticky top-28 pt-1">
-            <motion.div
-              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: prefersReducedMotion ? 0.01 : 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="group"
-            >
-              <div className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden bg-ivoire border border-sable-border/90 shadow-sm transition-shadow duration-300 hover:shadow-md">
-                <Image
-                  src="/images/morgan-about.jpeg"
-                  alt="Morgan Bocovo — Engagement terrain et coordination opérationnelle"
-                  fill
-                  priority={false}
-                  sizes="(max-width: 1280px) 42vw, 540px"
-                  className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.015]"
-                />
+          {/* Right Column: Refined Portrait with warm border */}
+          <div className="lg:col-span-5 flex flex-col items-center lg:items-end">
+            <div className="relative w-full max-w-[420px] aspect-[4/5] rounded-3xl overflow-hidden bg-white border-2 border-sable-border shadow-lg group">
+              <Image
+                src="/images/morgan-about.jpeg"
+                alt="Morgan Bocovo - Engagement terrain et rigueur opérationnelle"
+                fill
+                sizes="(max-width: 1024px) 100vw, 420px"
+                className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80" />
+              <div className="absolute bottom-4 left-4 right-4 text-white">
+                <p className="font-display font-bold text-sm">Morgan Bocovo</p>
+                <p className="text-xs text-white/80">CEO Baron Meridian & DG Bao Consilium</p>
               </div>
-
-              {/* Discrete elegant caption */}
-              <p className="text-xs text-encre-muted font-sans font-normal mt-3 px-1 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-cuivre" />
-                <span>Morgan Bocovo · Engagement terrain & rigueur opérationnelle</span>
-              </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>

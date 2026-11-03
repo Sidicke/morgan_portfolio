@@ -34,7 +34,7 @@ export const Header: React.FC = () => {
       if (document.body.style.position === "fixed") return;
       setIsScrolled(window.scrollY > 20);
 
-      const sections = ["a-propos", "expertises", "parcours", "realisations", "contact"];
+      const sections = ["expertises", "parcours", "realisations", "a-propos", "contact"];
       const scrollPosition = window.scrollY + 200;
 
       for (const sectionId of sections) {
