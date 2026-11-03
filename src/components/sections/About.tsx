@@ -2,11 +2,24 @@
 
 import React from "react";
 import Image from "next/image";
-import { Quote } from "lucide-react";
+import { Quote, SearchCheck, ShieldCheck, Ship } from "lucide-react";
 import { portfolioContent } from "@/content/portfolioData";
 
 export const About: React.FC = () => {
   const about = portfolioContent.about;
+
+  const getPillarIcon = (number: string) => {
+    switch (number) {
+      case "01":
+        return <SearchCheck className="w-4 h-4 text-emerald-700" />;
+      case "02":
+        return <ShieldCheck className="w-4 h-4 text-amber-700" />;
+      case "03":
+        return <Ship className="w-4 h-4 text-blue-700" />;
+      default:
+        return <ShieldCheck className="w-4 h-4 text-cuivre" />;
+    }
+  };
 
   return (
     <section
@@ -41,21 +54,24 @@ export const About: React.FC = () => {
               {about.summary}
             </p>
 
-            {/* 3 Compact Action Pillars with tasteful colors */}
+            {/* 3 Compact Action Pillars with tasteful colors and unified icons */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full mb-6">
               {about.pillars.map((pillar) => (
                 <div
                   key={pillar.number}
                   className="p-3.5 sm:p-4 rounded-2xl bg-white border border-sable-border shadow-2xs hover:shadow-xs transition-shadow"
                 >
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <span className={`text-[11px] font-bold px-2 py-0.5 rounded-md border ${pillar.color}`}>
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-7 h-7 rounded-lg bg-[#FAF8F5] border border-sable-border flex items-center justify-center flex-shrink-0">
+                      {getPillarIcon(pillar.number)}
+                    </div>
+                    <span className={`text-[10px] font-extrabold px-1.5 py-0.5 rounded border ${pillar.color}`}>
                       {pillar.number}
                     </span>
-                    <h3 className="font-display font-bold text-xs sm:text-sm text-encre">
-                      {pillar.title}
-                    </h3>
                   </div>
+                  <h3 className="font-display font-bold text-xs sm:text-sm text-encre mb-1">
+                    {pillar.title}
+                  </h3>
                   <p className="text-xs text-encre-light leading-relaxed">
                     {pillar.description}
                   </p>
