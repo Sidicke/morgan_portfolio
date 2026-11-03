@@ -15,8 +15,10 @@ import {
   Sparkles,
   Building2,
   Award,
+  HelpCircle,
 } from "lucide-react";
 import { portfolioContent } from "@/content/portfolioData";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
 
 const WhatsAppIcon: React.FC<{ className?: string }> = ({ className = "w-5 h-5" }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -26,28 +28,41 @@ const WhatsAppIcon: React.FC<{ className?: string }> = ({ className = "w-5 h-5" 
 
 export default function CoachingPage() {
   const [zoomedImage, setZoomedImage] = useState<string | null>(null);
+  const [selectedPlatform, setSelectedPlatform] = useState<string | null>(null);
   const coaching = portfolioContent.coaching;
   const formulas = coaching.formulas;
+
+  const platformExplanations: Record<string, string> = {
+    Alibaba: "La référence mondiale du B2B : négociation directe avec les fabricants, MOQ flexibles et commande en gros sécurisée.",
+    Taobao: "Le catalogue géant chinois : idéal pour sourcer des échantillons unitaires, découvrir les tendances et acheter sans intermédiaire.",
+    Pinduoduo: "Le champion des achats groupés : tarifs ultra-agressifs au prix coûtant d'usine pour maximiser vos marges commerciales.",
+    "JD.ID": "Garantie qualité et authenticité : le choix numéro 1 pour les produits électroniques, high-tech et matériel professionnel certifié.",
+    Xianyu: "La plateforme d'opportunités : déstockages d'usines, invendus neufs et pièces rares à prix cassés.",
+    "+ Plateformes Pro": "Réseaux d'usines spécialisés et circuits fermés chinois pour les négociations de gros volumes industriels.",
+  };
 
   const getPlatformStyle = (name: string) => {
     switch (name) {
       case "Alibaba":
-        return "bg-amber-50 text-amber-900 border-amber-300";
+        return "bg-amber-50 text-amber-900 border-amber-300 hover:bg-amber-100";
       case "Taobao":
-        return "bg-orange-50 text-orange-900 border-orange-300";
+        return "bg-orange-50 text-orange-900 border-orange-300 hover:bg-orange-100";
       case "Pinduoduo":
-        return "bg-red-50 text-red-900 border-red-300";
+        return "bg-red-50 text-red-900 border-red-300 hover:bg-red-100";
       case "JD.ID":
-        return "bg-rose-50 text-rose-900 border-rose-300";
+        return "bg-rose-50 text-rose-900 border-rose-300 hover:bg-rose-100";
       case "Xianyu":
-        return "bg-yellow-50 text-yellow-950 border-yellow-300";
+        return "bg-yellow-50 text-yellow-950 border-yellow-300 hover:bg-yellow-100";
       default:
-        return "bg-emerald-50 text-emerald-900 border-emerald-300";
+        return "bg-emerald-50 text-emerald-900 border-emerald-300 hover:bg-emerald-100";
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF8F5] text-encre flex flex-col selection:bg-cuivre/20 selection:text-cuivre">
+    <div className="min-h-screen bg-[#FAF8F5] text-encre flex flex-col selection:bg-cuivre/20 selection:text-cuivre relative">
+      {/* Scroll Progress Bar */}
+      <ScrollProgress />
+
       {/* Top Sticky Header */}
       <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-sable-border">
         <div className="mx-auto w-full max-w-container px-5 sm:px-8 lg:px-14 py-4 flex items-center justify-between">
@@ -70,7 +85,7 @@ export default function CoachingPage() {
             href="https://wa.me/2290167174369?text=Bonjour%20Morgan%20Bocovo,%20je%20souhaite%20des%20renseignements%20sur%20vos%20programmes%20de%20coaching."
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-vert-profond text-white text-xs sm:text-sm font-semibold hover:bg-vert-profond-hover transition-colors shadow-2xs"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-vert-profond text-white text-xs sm:text-sm font-semibold hover:bg-vert-profond-hover active:scale-95 transition-all shadow-2xs"
           >
             <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
             <span>Contact direct</span>
@@ -215,23 +230,50 @@ export default function CoachingPage() {
                         </p>
                       </div>
 
-                      {/* Platforms Supported */}
+                      {/* Platforms Supported with Interactive Tooltip Inspector */}
                       <div className="mb-7">
-                        <div className="text-xs font-bold uppercase tracking-wider text-encre-muted mb-3">
-                          Plateformes stratégiques enseignées ({formula.platformsCount}) :
+                        <div className="flex items-center justify-between mb-3">
+                          <span className="text-xs font-bold uppercase tracking-wider text-encre-muted">
+                            Plateformes enseignées ({formula.platformsCount}) :
+                          </span>
+                          <span className="text-[11px] text-cuivre font-medium hidden sm:inline">
+                            Cliquez sur une plateforme pour voir ses atouts
+                          </span>
                         </div>
+
                         <div className="flex flex-wrap gap-2">
                           {formula.platforms.map((plat) => (
-                            <span
+                            <button
                               key={plat}
-                              className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold border shadow-2xs ${getPlatformStyle(
+                              type="button"
+                              onClick={() =>
+                                setSelectedPlatform(selectedPlatform === plat ? null : plat)
+                              }
+                              className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold border shadow-2xs transition-all cursor-pointer ${getPlatformStyle(
                                 plat
-                              )}`}
+                              )} ${selectedPlatform === plat ? "ring-2 ring-cuivre" : ""}`}
                             >
                               {plat}
-                            </span>
+                            </button>
                           ))}
                         </div>
+
+                        {/* Interactive Platform Explanation Card */}
+                        {selectedPlatform && formula.platforms.includes(selectedPlatform) && (
+                          <motion.div
+                            initial={{ opacity: 0, y: -6 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="mt-3 p-3.5 rounded-xl bg-vert-profond/5 border border-vert-profond/20 text-xs text-encre leading-relaxed flex items-start gap-2"
+                          >
+                            <HelpCircle className="w-4 h-4 text-cuivre flex-shrink-0 mt-0.5" />
+                            <div>
+                              <strong className="text-vert-profond font-bold block mb-0.5">
+                                {selectedPlatform} :
+                              </strong>
+                              <span>{platformExplanations[selectedPlatform] || "Plateforme stratégique d'approvisionnement direct usine."}</span>
+                            </div>
+                          </motion.div>
+                        )}
                       </div>
 
                       {/* Curriculum / Deliverables */}
@@ -261,7 +303,7 @@ export default function CoachingPage() {
                         href={whatsappUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`w-full py-4 px-6 rounded-2xl font-display font-bold text-base flex items-center justify-center gap-3 transition-all shadow-sm ${
+                        className={`w-full py-4 px-6 rounded-2xl font-display font-bold text-base flex items-center justify-center gap-3 active:scale-[0.98] transition-all shadow-sm ${
                           isF2
                             ? "bg-vert-profond text-white hover:bg-vert-profond-hover hover:shadow-md"
                             : "bg-white text-vert-profond border-2 border-vert-profond hover:bg-vert-profond hover:text-white"
@@ -298,7 +340,7 @@ export default function CoachingPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-2xl bg-white border border-sable-border shadow-2xs">
+              <div className="p-6 rounded-2xl bg-white border border-sable-border shadow-2xs hover:scale-[1.02] transition-transform">
                 <div className="w-11 h-11 rounded-xl bg-cuivre/10 text-cuivre flex items-center justify-center mb-4">
                   <Building2 className="w-5 h-5" />
                 </div>
@@ -310,7 +352,7 @@ export default function CoachingPage() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-white border border-sable-border shadow-2xs">
+              <div className="p-6 rounded-2xl bg-white border border-sable-border shadow-2xs hover:scale-[1.02] transition-transform">
                 <div className="w-11 h-11 rounded-xl bg-vert-profond/10 text-vert-profond flex items-center justify-center mb-4">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
@@ -322,7 +364,7 @@ export default function CoachingPage() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-white border border-sable-border shadow-2xs">
+              <div className="p-6 rounded-2xl bg-white border border-sable-border shadow-2xs hover:scale-[1.02] transition-transform">
                 <div className="w-11 h-11 rounded-xl bg-amber-100 text-amber-900 flex items-center justify-center mb-4">
                   <Award className="w-5 h-5" />
                 </div>
@@ -351,14 +393,14 @@ export default function CoachingPage() {
                 href="https://wa.me/2290167174369?text=Bonjour%20Morgan%20Bocovo,%20je%20souhaite%20m'inscrire%20à%20un%20programme%20de%20coaching."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="py-3.5 px-8 rounded-2xl bg-white text-vert-profond font-display font-bold text-base hover:bg-cuivre hover:text-white transition-colors shadow-md flex items-center gap-2.5"
+                className="py-3.5 px-8 rounded-2xl bg-white text-vert-profond font-display font-bold text-base hover:bg-cuivre hover:text-white active:scale-95 transition-all shadow-md flex items-center gap-2.5"
               >
                 <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
                 <span>Échanger sur WhatsApp (+229 01 67 17 43 69)</span>
               </a>
               <Link
                 href="/#expertises"
-                className="py-3.5 px-6 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-sans text-sm font-semibold transition-colors"
+                className="py-3.5 px-6 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-sans text-sm font-semibold active:scale-95 transition-all"
               >
                 Retour aux autres services
               </Link>

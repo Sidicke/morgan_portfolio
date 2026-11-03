@@ -317,14 +317,65 @@ export const Contact: React.FC = () => {
                   />
                 </div>
 
-                {/* Message */}
+                {/* Message avec Modèles Rapides d'échange */}
                 <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-xs sm:text-[13px] font-semibold uppercase tracking-wider text-ivoire/90 mb-1.5"
-                  >
-                    Votre message <span className="text-cuivre">*</span>
-                  </label>
+                  <div className="flex flex-wrap items-center justify-between gap-1 mb-1.5">
+                    <label
+                      htmlFor="message"
+                      className="block text-xs sm:text-[13px] font-semibold uppercase tracking-wider text-ivoire/90"
+                    >
+                      Votre message <span className="text-cuivre">*</span>
+                    </label>
+                    <span className="text-[11px] text-emerald-400 font-medium">
+                      Modèles rapides en 1 clic :
+                    </span>
+                  </div>
+
+                  {/* 3 Quick Template Pills */}
+                  <div className="flex flex-wrap gap-1.5 mb-2.5">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setFormData((prev) => ({
+                          ...prev,
+                          subject: "Sourcing & Approvisionnement Chine ➔ Cotonou",
+                          message: "Bonjour Morgan, j'ai un projet d'approvisionnement en cours depuis la Chine et je souhaite être accompagné pour auditer les usines, négocier les tarifs et sécuriser l'acheminement logistique jusqu'à Cotonou.",
+                        }));
+                      }}
+                      className="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#133c36] text-emerald-300 border border-emerald-500/30 hover:border-emerald-400 hover:bg-[#194c44] active:scale-95 transition-all cursor-pointer"
+                    >
+                      📦 Sourcing Chine ➔ Bénin
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setFormData((prev) => ({
+                          ...prev,
+                          subject: "Inscription Coaching & Accompagnement",
+                          message: "Bonjour Morgan, je souhaite m'inscrire à l'une de vos formules de coaching pour maîtriser le sourcing direct usine et devenir autonome sur les plateformes chinoises.",
+                        }));
+                      }}
+                      className="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#362f1c] text-amber-300 border border-amber-500/30 hover:border-amber-400 hover:bg-[#453c24] active:scale-95 transition-all cursor-pointer"
+                    >
+                      🎓 Programme Coaching
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setFormData((prev) => ({
+                          ...prev,
+                          subject: "Audit de solvabilité Fournisseur & Paiements",
+                          message: "Bonjour Morgan, j'ai identifié un fournisseur potentiel et je souhaite réaliser un audit complet de conformité avant d'engager des paiements par Alipay ou virement.",
+                        }));
+                      }}
+                      className="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#1c2c36] text-cyan-300 border border-cyan-500/30 hover:border-cyan-400 hover:bg-[#253945] active:scale-95 transition-all cursor-pointer"
+                    >
+                      🔍 Audit Fournisseur
+                    </button>
+                  </div>
+
                   <textarea
                     id="message"
                     name="message"

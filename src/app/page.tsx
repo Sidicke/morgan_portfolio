@@ -7,10 +7,18 @@ import { CaseStudies } from "@/components/sections/CaseStudies";
 import { About } from "@/components/sections/About";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/layout/Footer";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import { AmbientSpotlight } from "@/components/ui/AmbientSpotlight";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-ivoire text-encre">
+    <div className="flex flex-col min-h-screen bg-ivoire text-encre relative">
+      {/* Scroll Progress Bar at the very top */}
+      <ScrollProgress />
+
+      {/* Subtle Luxury Cursor Ambient Follower (desktop) */}
+      <AmbientSpotlight />
+
       {/* Skip to main content link for WCAG AA compliance */}
       <a
         href="#main-content"
